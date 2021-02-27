@@ -1,0 +1,31 @@
+
+datasource db {
+  provider = "sqlite"
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output = "../server/node_modules/.prisma/client"
+}
+
+model User {
+    id                Int       @id @default(autoincrement())
+    username          String    @unique
+    email             String    @unique
+    password          String
+
+    farmer            Boolean   @default(true)
+
+    products          Product[]
+}
+
+model Product {
+    id                Int       @id @default(autoincrement())
+    type              String
+    quality           String
+    quantity          Int
+    owner             User      @relation(fields: [ownerId], references: [id])
+    ownerId           Int
+}
+

@@ -1,0 +1,26 @@
+{
+    "hard-red-winter-wheat": {
+        "name": "Hard Red Winter Wheat"
+    },
+    "durum-wheat": {
+        "name": "Durum Wheat"
+    },
+    "long-rice": {
+        "name": "Long Grain Rice"
+    },
+    "short-rice": {
+        "name": "Short Grain Rice"
+    },
+    "raw-sugar": {
+        "name": "Raw Sugar"
+    },
+    "refined-sugar": {
+        "name": "Refined Sugar"
+    },
+    "1-corn": {
+        "name": "#1 Yellow Corn"
+    },
+    "2-corn": {
+        "name": "#2 Yellow Corn"
+    }
+}

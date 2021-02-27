@@ -6,11 +6,15 @@ app Farnance {
   ]
 }
 
+// Authentication
+
 auth {
   userEntity: User,
   methods: [ EmailAndPassword ],
   onAuthFailedRedirectTo: "/login"
 }
+
+// Entities
 
 entity User {=psl
     id                Int       @id @default(autoincrement())
@@ -27,6 +31,7 @@ entity Product {=psl
     id                Int       @id @default(autoincrement())
     type              String
     quality           String
+    quantity          Int
     owner             User      @relation(fields: [ownerId], references: [id])
     ownerId           Int
 psl=}
@@ -65,6 +70,17 @@ page NewProduct {
 }
 
 
+// Actions
+
+action createProduct {
+  fn: import { createProduct } from "@ext/actions.js",
+  entities: [Product]
+}
+
+
+
+
+// Dependencies
 
 dependencies {=json
   "@material-ui/core": "^4.11.1"
