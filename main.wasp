@@ -19,6 +19,16 @@ entity User {=psl
     password          String
 
     farmer            Boolean   @default(true)
+
+    products          Product[]
+psl=}
+
+entity Product {=psl
+    id                Int       @id @default(autoincrement())
+    type              String
+    quality           String
+    owner             User      @relation(fields: [ownerId], references: [id])
+    ownerId           Int
 psl=}
 
 
@@ -46,6 +56,12 @@ route "/home" -> page Home
 page Home {
   authRequired: true,
   component: import Home from "@ext/pages/Home/Home.jsx"
+}
+
+route "/new" -> page NewProduct
+page NewProduct {
+  authRequired: true,
+  component: import NewProduct from "@ext/pages/Farmers/NewProduct/NewProduct.jsx"
 }
 
 
