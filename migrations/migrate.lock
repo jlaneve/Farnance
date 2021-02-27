@@ -1,3 +1,4 @@
 # Prisma Migrate lockfile v1
 
 20210227162352-added-users
+20210227164905-add-farmer-toggle-to-user-entity
