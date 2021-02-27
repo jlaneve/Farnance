@@ -1,0 +1,53 @@
+app Farnance {
+  title: "Farnance",
+
+  head: [
+    "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap\" />"
+  ]
+}
+
+auth {
+  userEntity: User,
+  methods: [ EmailAndPassword ],
+  onAuthFailedRedirectTo: "/login"
+}
+
+entity User {=psl
+    id                Int       @id @default(autoincrement())
+    username          String    @unique
+    email             String    @unique
+    password          String
+psl=}
+
+
+
+// Pages for all
+route "/" -> page Landing
+page Landing {
+  component: import Landing from "@ext/pages/Landing/Landing.jsx"
+}
+
+
+route "/register" -> page Register
+page Register {
+  component: import Register from "@ext/pages/Register/Register.jsx"
+}
+
+route "/login" -> page Login
+page Login {
+  component: import Login from "@ext/pages/Login/Login.jsx"
+}
+
+
+// Farmer pages
+route "/home" -> page Home
+page Home {
+  authRequired: true,
+  component: import Home from "@ext/pages/Home/Home.jsx"
+}
+
+
+
+dependencies {=json
+  "@material-ui/core": "^4.11.1"
+json=}
