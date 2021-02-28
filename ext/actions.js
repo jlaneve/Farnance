@@ -57,8 +57,8 @@ export const createOffer = async (args, context) => {
     
     return context.entities.FinancingAgreement.create({
         data: {
-            totalCapacity: args.amount / products[args.productType].price,
-            remainingCapacity: args.amount / products[args.productType].price,
+            totalCapacity: Math.floor(args.amount / products[args.productType].price),
+            remainingCapacity: Math.floor(args.amount / products[args.productType].price),
             dollarValue: args.amount,
             rate: args.rate,
             productType: args.productType,
