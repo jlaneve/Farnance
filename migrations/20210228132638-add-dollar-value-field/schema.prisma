@@ -1,0 +1,59 @@
+
+datasource db {
+  provider = "sqlite"
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output = "../server/node_modules/.prisma/client"
+}
+
+model User {
+    id                Int       @id @default(autoincrement())
+    username          String    @unique
+    email             String    @unique
+    password          String
+
+    farmer            Boolean   @default(true)
+
+    products          Product[]
+}
+
+model Product {
+    id                Int       @id @default(autoincrement())
+    type              String
+    name              String    @default("")
+    quality           String
+    quantity          Int
+
+    owner             User      @relation(fields: [ownerId], references: [id])
+    ownerId           Int
+
+    financingAgreement FinancingAgreement? @relation(fields: [agreementId], references: [id])
+    agreementId       Int?
+}
+
+model FinancingAgreement {
+    id                Int         @id @default(autoincrement())
+
+    filled            Boolean     @default(false)
+
+    totalCapacity     Int
+    remainingCapacity Int
+    rate              Float
+
+    dollarValue       Float
+
+    // Before order is filled
+    productType       String
+    quality           String
+
+
+    // Only available after order is filled
+    products          Product[]
+
+    bank              User        @relation(fields: [bankId], references: [id])
+    bankId            Int
+}
+

@@ -91,6 +91,9 @@ const NewOffer = (props) => {
                     value={amount}
                     onChange={e => setAmount(addCommas(removeNonNumeric(e.target.value)))}
                     style={{width: "48%"}}
+                    InputProps={{
+                        startAdornment: <InputAdornment position="start">$</InputAdornment>
+                    }}
                 />
 
                 <TextField

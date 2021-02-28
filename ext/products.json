@@ -1,26 +1,34 @@
 {
     "hard-red-winter-wheat": {
-        "name": "Hard Red Winter Wheat"
+        "name": "Hard Red Winter Wheat",
+        "price": 5
     },
     "durum-wheat": {
-        "name": "Durum Wheat"
+        "name": "Durum Wheat",
+        "price": 4.5
     },
     "long-rice": {
-        "name": "Long Grain Rice"
+        "name": "Long Grain Rice",
+        "price": 5.5
     },
     "short-rice": {
-        "name": "Short Grain Rice"
+        "name": "Short Grain Rice",
+        "price": 4
     },
     "raw-sugar": {
-        "name": "Raw Sugar"
+        "name": "Raw Sugar",
+        "price": 0.4
     },
     "refined-sugar": {
-        "name": "Refined Sugar"
+        "name": "Refined Sugar",
+        "price": 0.2
     },
     "1-corn": {
-        "name": "#1 Yellow Corn"
+        "name": "#1 Yellow Corn",
+        "price": 3.85
     },
     "2-corn": {
-        "name": "#2 Yellow Corn"
+        "name": "#2 Yellow Corn",
+        "price": 3.75
     }
 }
