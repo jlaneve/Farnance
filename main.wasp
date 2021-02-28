@@ -89,6 +89,12 @@ page Home {
   component: import Home from "@ext/pages/Home/Home.jsx"
 }
 
+route "/market" -> page Market
+page Market {
+  authRequired: true,
+  component: import Market from "@ext/pages/Market/Market.jsx"
+}
+
 // Farmer pages
 route "/new-product" -> page NewProduct
 page NewProduct {
@@ -137,6 +143,11 @@ query getOffers {
 query getAvailableFinancing {
   fn: import { getAvailableFinancing } from "@ext/queries.js",
   entities: [FinancingAgreement, Product]
+}
+
+query getMarket {
+  fn: import { getMarket } from "@ext/queries.js",
+  entities: [Product]
 }
 
 

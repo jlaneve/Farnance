@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Container } from '@material-ui/core';
+import { Container, TextField, InputAdornment, Typography, Select, MenuItem, InputLabel, FormControl, Button } from '@material-ui/core'
 import { useHistory } from 'react-router-dom';
 
 import Header from '../Header/Header.jsx'
@@ -34,37 +34,78 @@ const NewOffer = () => {
             console.log(err)
         }
     }
+
+    const addCommas = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const removeNonNumeric = num => num.toString().replace(/[^0-9]/g, "");
     
 
     return (<div>
         <Header />
-        <Container maxWidth="md">
+        <Container maxWidth="sm">
+            <br /><br />
+            <Typography variant="h6" style={{textAlign: "center"}}>
+                Make a new open financing offer
+            </Typography>
+
+            <br /><br />
             <form onSubmit={handleSubmit}>
-                <h3>Product</h3>
-                <select value={selectedProduct} onChange={e => selectProduct(e.target.value)}>
-                    {productNames.map(productName => 
-                        <option key={productName} value={productName}>{products[productName].name}</option>
-                    )}
-                </select>
+                <FormControl style={{width: "70%"}}>
+                    <InputLabel id="product-type">Product Type</InputLabel>
+                    <Select
+                        required
+                        labelId="product-type"
+                        value={selectedProduct}
+                        onChange={e => selectProduct(e.target.value)}
+                        style={{width: "100%", marginBottom: "20px"}}
+                    >
+                        {productNames.map(productName => 
+                            <MenuItem key={productName} value={productName}>{products[productName].name}</MenuItem>
+                        )}
+                    </Select>
+                </FormControl>
 
+                <FormControl style={{width: "25%", marginLeft: "5%"}}>
+                    <InputLabel id="quality">Quality</InputLabel>
+                    <Select
+                        required
+                        labelId="quality"
+                        value={quality}
+                        onChange={e => selectQuality(e.target.value)}
+                        style={{width: "100%", marginBottom: "20px"}}
+                    >
+                        {qualities.map(quality => 
+                            <MenuItem key={quality} value={quality}>{quality}</MenuItem>
+                        )}
+                    </Select>
+                </FormControl>
 
-                <h3>Quality</h3>
-                <select value={quality} onChange={e => selectQuality(e.target.value)}>
-                    {qualities.map(quality => 
-                        <option key={quality} value={quality}>{quality}</option>
-                    )}
-                </select>
+                <br />
 
+                <TextField
+                    required
+                    id="amount"
+                    label="Loan Amount"
+                    value={amount}
+                    onChange={e => setAmount(addCommas(removeNonNumeric(e.target.value)))}
+                    style={{width: "48%"}}
+                />
 
-                <h3>Loan Amount</h3>
-                <input type='text' value={amount} onChange={e => setAmount(e.target.value)} />
-
-                <h3>Interest Rate (%)</h3>
-                <input type='text' value={rate} onChange={e => setRate(e.target.value)} />
+                <TextField
+                    required
+                    id="rate"
+                    label="Interest Rate"
+                    value={rate}
+                    onChange={e => setRate(e.target.value)}
+                    style={{width: "48%", marginLeft: "4%"}}
+                    InputProps={{
+                        endAdornment: <InputAdornment position="end">%</InputAdornment>
+                    }}
+                />
 
                 <br /><br />
-
-                <input type='submit' value='Create financing offer' />
+                <div style={{width: "100%", flex: 1, textAlign: "center", marginTop: "20px"}}>
+                    <Button type='submit' variant="contained" color="primary">Create offer</Button>
+                </div>
             </form>
         </Container>
     </div>);

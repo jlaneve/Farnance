@@ -19,10 +19,12 @@ const Header = () => {
 
 
 
+                    <Button style={{color: "white"}} component={Link} to="home">Dashboard</Button>
+                    <Button style={{color: "white"}} component={Link} to="market">Market</Button>
                     {user.farmer ?
-                        (<Button component={Link} to="new-product">Add Product</Button>) :
-                        (<Button component={Link} to="new-offer">Create Financing Offer</Button>)}
-                    <Button onClick={() => logout()}>Logout</Button>
+                        (<Button component={Link} to="new-product" style={{color: "white"}}>Add Product</Button>) :
+                        (<Button component={Link} to="new-offer" style={{color: "white"}}>Create Financing Offer</Button>)}
+                    <Button style={{color: "white", fontWeight: "bold"}} onClick={() => logout()}>Logout</Button>
                 </Toolbar>
             </AppBar>
             </div>
@@ -36,8 +38,8 @@ const Header = () => {
                         Farnance
                     </Typography>
 
-                    <Button component={Link} to="/login">Login</Button>
-                    <Button component={Link} to="/register">Register</Button>
+                    <Button style={{color: "white"}} component={Link} to="/login">Login</Button>
+                    <Button style={{color: "white", fontWeight: "bold"}} component={Link} to="/register">Register</Button>
                 </Toolbar>
             </AppBar>
             </div>

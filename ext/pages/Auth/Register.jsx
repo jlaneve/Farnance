@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import Header from '../Header/Header.jsx'
-import { Container } from '@material-ui/core'
+import { Container, TextField, Typography, Select, MenuItem, InputLabel, FormControl, Button } from '@material-ui/core'
 
 import login from '@wasp/auth/login'
 import signup from '@wasp/auth/signup'
@@ -34,30 +34,69 @@ export default () => {
   return (
     <div>
       <Header />
-      <Container maxWidth="md">
+      <Container maxWidth="sm">
+        <br />
         { submitError && (
-            <p> { submitError.message || submitError } </p>
+            <p style={{color: "red", textAlign: "center"}}> { submitError.message || submitError } </p>
         ) }
 
-        <form onSubmit={handleSubmit}>
-          <h2> Full Name </h2>
-          <input type='text' value={username} onChange={e => setUsername(e.target.value)} />
+        <br />
 
-          <h2> Email </h2>
-          <input type='text' value={email} onChange={e => setEmail(e.target.value)} />
 
-          <h2> Password </h2>
-          <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
+        <Typography variant="h6" style={{textAlign: "center"}}>
+            Register for Farnance
+        </Typography>
 
-          <h2> User Type </h2>
-          <select value={userType} onChange={e => setUserType(e.target.value)}>
-              <option value="farmer">Farmer</option>
-              <option value="bank">Bank</option>
-          </select>
+        <br /><br />
+
+        <form style={{width: "100%"}} onSubmit={handleSubmit}>
+          <TextField
+            variant="filled"
+            label="Full Name"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            style={{width: "100%", marginBottom: "20px"}}
+          />
+
+          <br />
+
+          <TextField
+            variant="filled"
+            label="Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            style={{width: "100%", marginBottom: "20px"}}
+          />
+
+          <TextField
+            variant="filled"
+            label="Password"
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            style={{width: "100%", marginBottom: "20px"}}
+          />
+
+          <FormControl>
+            <InputLabel id="user-type">User Type</InputLabel>
+            <Select
+              labelId="user-type"
+              value={userType}
+              onChange={e => setUserType(e.target.value)}
+              style={{width: "100%", marginBottom: "20px"}}
+              >
+                <MenuItem value="farmer">Farmer</MenuItem>
+                <MenuItem value="bank">Bank</MenuItem>
+            </Select>
+          </FormControl>
 
 
           <br />
-          <input type='submit' value='Sign up' />
+
+          <div style={{flex: 1, textAlign: "center"}}>
+            <Button href="/login" variant="contained" style={{marginRight: "25px"}}>Sign In</Button>
+            <Button type='submit' variant="contained" color="primary">Sign Up</Button>
+          </div>
         </form>
       </Container>
     </div>

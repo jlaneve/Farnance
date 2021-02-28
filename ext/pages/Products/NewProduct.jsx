@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container } from '@material-ui/core';
+import { Container, TextField, Typography, Select, MenuItem, InputLabel, FormControl, Button } from '@material-ui/core'
 import { useHistory } from 'react-router-dom';
 
 import Header from '../Header/Header.jsx'
@@ -15,7 +15,7 @@ const qualities = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-"];
 const NewProduct = () => {
     const [selectedProduct, selectProduct] = useState(productNames[0])
     const [quality, selectQuality] = useState(qualities[0])
-    const [quantity, setQuantity] = useState(0)
+    const [quantity, setQuantity] = useState()
 
     const history = useHistory()
 
@@ -28,34 +28,65 @@ const NewProduct = () => {
             console.log(err)
         }
     }
+
+    const addCommas = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const removeNonNumeric = num => num.toString().replace(/[^0-9]/g, "");
     
 
     return (<div>
         <Header />
-        <Container maxWidth="md">
+        <Container maxWidth="sm">
+            <br /><br />
+            <Typography variant="h6" style={{textAlign: "center"}}>
+                Register a new product
+            </Typography>
+
+            <br /><br />
             <form onSubmit={handleSubmit}>
-                <h3>Product Type</h3>
-                <select value={selectedProduct} onChange={e => selectProduct(e.target.value)}>
-                    {productNames.map(productName => 
-                        <option key={productName} value={productName}>{products[productName].name}</option>
-                    )}
-                </select>
+                
+                <FormControl style={{width: "40%"}}>
+                    <InputLabel id="product-type">Product Type</InputLabel>
+                    <Select
+                        labelId="product-type"
+                        value={selectedProduct}
+                        onChange={e => selectProduct(e.target.value)}
+                        style={{width: "100%", marginBottom: "20px"}}
+                    >
+                        {productNames.map(productName => 
+                            <MenuItem key={productName} value={productName}>{products[productName].name}</MenuItem>
+                        )}
+                    </Select>
+                </FormControl>
+
+                <FormControl style={{width: "25%", marginLeft: "5%"}}>
+                    <InputLabel id="quality">Quality</InputLabel>
+                    <Select
+                        labelId="quality"
+                        value={quality}
+                        onChange={e => selectQuality(e.target.value)}
+                        style={{width: "100%", marginBottom: "20px"}}
+                    >
+                        {qualities.map(quality => 
+                            <MenuItem key={quality} value={quality}>{quality}</MenuItem>
+                        )}
+                    </Select>
+                </FormControl>
 
 
-                <h3>Quality</h3>
-                <select value={quality} onChange={e => selectQuality(e.target.value)}>
-                    {qualities.map(quality => 
-                        <option key={quality} value={quality}>{quality}</option>
-                    )}
-                </select>
-
-
-                <h3>Quantity</h3>
-                <input type='text' value={quantity} onChange={e => setQuantity(e.target.value)} />
+                <TextField
+                    required
+                    id="quantity"
+                    label="Quantity"
+                    defaultValue={0}
+                    value={quantity}
+                    onChange={e => setQuantity(addCommas(removeNonNumeric(e.target.value)))}
+                    style={{width: "25%", marginLeft: "5%"}}
+                />
 
                 <br /><br />
-
-                <input type='submit' value='Add product' />
+                <div style={{width: "100%", flex: 1, textAlign: "center"}}>
+                    <Button type='submit' variant="contained" color="primary">Add product</Button>
+                </div>
             </form>
         </Container>
     </div>);
