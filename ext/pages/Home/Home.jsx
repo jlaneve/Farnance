@@ -5,16 +5,14 @@ import useAuth from '@wasp/auth/useAuth.js'
 
 import Header from '../Header/Header.jsx';
 
+import FarmersHome from '../Farmers/Home/Home.jsx';
+
 const Home = () => {
     const { data: user } = useAuth()
 
-    console.log(user)
-
     return (<div>
         <Header />
-        <Typography variant="h6">
-            Welcome {user.username}
-        </Typography>
+        {user.farmer ? <FarmersHome user={user} /> : "Welcome bank"}
     </div>);
 }
 

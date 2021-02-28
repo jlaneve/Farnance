@@ -1,0 +1,15 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "DeleteModel",
+      "model": "Bank"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "FinancingAgreement",
+      "field": "bank",
+      "type": "User"
+    }
+  ]
+}

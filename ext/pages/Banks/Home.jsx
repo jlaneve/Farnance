@@ -1,14 +1,14 @@
 import React from 'react';
 import { AppBar, Typography, Container } from '@material-ui/core';
 
-import getProducts from '@wasp/queries/getProducts'
+import getProducts from '@wasp/queries/getOffers'
 import { useQuery } from '@wasp/queries'
 
-import ProductList from "../../Products/ProductList.jsx"
+import ProductList from "../Products/ProductList.jsx"
 import { Redirect } from 'react-router';
 
 
-const FarmerHome = (props) => {
+const BankHome = (props) => {
     const { user } = props;
     const { data: products, isFetching, error } = useQuery(getProducts)
 
@@ -28,4 +28,4 @@ const FarmerHome = (props) => {
         </Container>);
 }
 
-export default FarmerHome;
+export default BankHome;

@@ -27,13 +27,40 @@ entity User {=psl
     products          Product[]
 psl=}
 
+
 entity Product {=psl
     id                Int       @id @default(autoincrement())
     type              String
+    name              String    @default("")
     quality           String
     quantity          Int
+
     owner             User      @relation(fields: [ownerId], references: [id])
     ownerId           Int
+
+    financingAgreement FinancingAgreement @relation(fields: [agreementId], references: [id])
+    agreementId       Int
+psl=}
+
+
+entity FinancingAgreement {=psl
+    id                Int         @id @default(autoincrement())
+
+    filled            Boolean     @default(false)
+
+    amount            Float
+    rate              Float
+
+    // Before order is filled
+    productType       String
+    quality           String
+
+
+    // Only available after order is filled
+    products          Product[]
+
+    bank              User        @relation(fields: [bankId], references: [id])
+    bankId            Int
 psl=}
 
 
@@ -55,20 +82,26 @@ page Login {
   component: import Login from "@ext/pages/Login/Login.jsx"
 }
 
-
-// Farmer pages
 route "/home" -> page Home
 page Home {
   authRequired: true,
   component: import Home from "@ext/pages/Home/Home.jsx"
 }
 
-route "/new" -> page NewProduct
+// Farmer pages
+route "/new-product" -> page NewProduct
 page NewProduct {
   authRequired: true,
   component: import NewProduct from "@ext/pages/Farmers/NewProduct/NewProduct.jsx"
 }
 
+
+// Bank pages
+route "/new-offer" -> page NewOffer
+page NewOffer {
+  authRequired: true,
+  component: import NewOffer from "@ext/pages/Banks/NewOffer.jsx"
+}
 
 // Actions
 
@@ -77,11 +110,23 @@ action createProduct {
   entities: [Product]
 }
 
+action createOffer {
+  fn: import { createOffer } from "@ext/actions.js",
+  entities: [FinancingAgreement]
+}
 
+
+// Queries
+
+query getProducts {
+  fn: import { getProducts } from "@ext/queries.js",
+  entities: [Product]
+}
 
 
 // Dependencies
 
 dependencies {=json
-  "@material-ui/core": "^4.11.1"
+  "@material-ui/core": "^4.11.1",
+  "@material-ui/data-grid": "latest"
 json=}

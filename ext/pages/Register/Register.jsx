@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
+import Header from '../Header/Header.jsx'
+import { Container } from '@material-ui/core'
+
 import login from '@wasp/auth/login'
 import signup from '@wasp/auth/signup'
 
@@ -30,30 +33,33 @@ export default () => {
 
   return (
     <div>
-      { submitError && (
-          <p> { submitError.message || submitError } </p>
-      ) }
+      <Header />
+      <Container maxWidth="md">
+        { submitError && (
+            <p> { submitError.message || submitError } </p>
+        ) }
 
-      <form onSubmit={handleSubmit}>
-        <h2> Username </h2>
-        <input type='text' value={username} onChange={e => setUsername(e.target.value)} />
+        <form onSubmit={handleSubmit}>
+          <h2> Username </h2>
+          <input type='text' value={username} onChange={e => setUsername(e.target.value)} />
 
-        <h2> Email </h2>
-        <input type='text' value={email} onChange={e => setEmail(e.target.value)} />
+          <h2> Email </h2>
+          <input type='text' value={email} onChange={e => setEmail(e.target.value)} />
 
-        <h2> Password </h2>
-        <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
+          <h2> Password </h2>
+          <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
 
-        <h2> User Type </h2>
-        <select value={userType} onChange={e => setUserType(e.target.value)}>
-            <option value="farmer">Farmer</option>
-            <option value="bank">Bank</option>
-        </select>
+          <h2> User Type </h2>
+          <select value={userType} onChange={e => setUserType(e.target.value)}>
+              <option value="farmer">Farmer</option>
+              <option value="bank">Bank</option>
+          </select>
 
 
-        <br />
-        <input type='submit' value='Sign up' />
-      </form>
+          <br />
+          <input type='submit' value='Sign up' />
+        </form>
+      </Container>
     </div>
   )
 }

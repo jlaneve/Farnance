@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Button } from '@material-ui/core';
 
+import Header from '../../Header/Header.jsx'
+
 import products from '../../../products.json';
 
 import createProduct from '@wasp/actions/createProduct';
@@ -17,7 +19,7 @@ const NewProduct = () => {
     const handleSubmit = async event => {
         event.preventDefault()
         try {
-            await createProduct({ product: selectedProduct, quality, quantity: parseInt(quantity) })
+            await createProduct({ product: selectedProduct, name: products[selectedProduct].name, quality, quantity: parseInt(quantity) })
         } catch (err) {
             console.log(err)
         }
@@ -25,6 +27,7 @@ const NewProduct = () => {
     
 
     return (<div>
+        <Header />
         <form onSubmit={handleSubmit}>
             <h3>Product Type</h3>
             <select value={selectedProduct} onChange={e => selectProduct(e.target.value)}>
