@@ -4,21 +4,23 @@ import { Card, CardContent, Typography, DataGrid } from '@material-ui/data-grid'
 
 import products from '../../products.json';
 
+const addCommas = ({ value }) => value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
 const bankColumns = [
     { field: 'id', headerName: 'Offer ID', width: 120 },
     { field: 'productType', headerName: 'Product Type', width: 180, valueFormatter: ({ value }) => products[value].name},
     { field: 'quality', headerName: 'Quality', width: 120 },
-    { field: 'totalCapacity', headerName: 'Original Capacity', width: 175 },
-    { field: 'remainingCapacity', headerName: 'Remaining Capacity', width: 180 },
-    { field: 'rate', headerName: 'Rate (%)', width: 120 },
+    { field: 'totalCapacity', headerName: 'Original Capacity', type: "number", width: 175, valueFormatter: addCommas },
+    { field: 'remainingCapacity', headerName: 'Remaining Capacity', type: "number", width: 180, valueFormatter: addCommas },
+    { field: 'rate', headerName: 'Rate (%)', type: "number", width: 120 },
 ]
 
 const farmerColumns = [
     { field: 'id', headerName: 'Offer ID', width: 120 },
     { field: 'productType', headerName: 'Product Type', width: 360, valueFormatter: ({ value }) => products[value].name},
     { field: 'quality', headerName: 'Quality', width: 120 },
-    { field: 'remainingCapacity', headerName: 'Amount', width: 180 },
-    { field: 'rate', headerName: 'Rate (%)', width: 120 },
+    { field: 'remainingCapacity', headerName: 'Amount', type: "number", width: 180, valueFormatter: addCommas },
+    { field: 'rate', headerName: 'Rate (%)', type: "number", width: 120 },
 ]
 
 const OfferList = (props) => {
@@ -30,7 +32,7 @@ const OfferList = (props) => {
                 columns={bank ? bankColumns : farmerColumns}
                 autoHeight={true}
                 disableClickEventBubbling={!selection}
-                onSelectionModelChange={({ selectionModel }) => onSelectionChange(selectionModel[0])}
+                onSelectionModelChange={selection ? ({ selectionModel }) => onSelectionChange(selectionModel[0]) : true}
             />
         </div>
     );

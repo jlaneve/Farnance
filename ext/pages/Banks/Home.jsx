@@ -21,7 +21,7 @@ const BankHome = (props) => {
     return (
         <Container maxWidth="md" style={{ "marginTop": 50 }}>
             <Typography variant="h6">
-                Welcome {user.username}. Here are your extended offers:
+                Welcome, {user.username}. Here are your extended offers:
             </Typography>
 
             <br /><br />
@@ -40,6 +40,8 @@ const BankHome = (props) => {
 
             {isFetching && "Fetching..."}
             {error && "Error: " + error}
+
+            <br /><br />
         </Container>);
 }
 

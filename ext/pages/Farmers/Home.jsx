@@ -24,7 +24,7 @@ const FarmerHome = (props) => {
     return (
         <Container maxWidth="md" style={{ "marginTop": 50 }}>
             <Typography variant="h6">
-                Welcome {user.username}. Here are your products:
+                Welcome, {user.username}. Here are your products:
             </Typography>
 
             <br /><br />

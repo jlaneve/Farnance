@@ -150,6 +150,11 @@ query getMarket {
   entities: [Product]
 }
 
+query getBankMarket {
+  fn: import { getBankMarket } from "@ext/queries.js",
+  entities: [Product]
+}
+
 
 // Dependencies
 

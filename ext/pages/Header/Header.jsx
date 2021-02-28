@@ -19,12 +19,12 @@ const Header = () => {
 
 
 
-                    <Button style={{color: "white"}} component={Link} to="home">Dashboard</Button>
-                    <Button style={{color: "white"}} component={Link} to="market">Market</Button>
+                    <Button style={{color: "white", marginRight: "10px"}} component={Link} to="home">Dashboard</Button>
+                    <Button style={{color: "white", marginRight: "10px"}} component={Link} to="market">Market</Button>
                     {user.farmer ?
                         (<Button component={Link} to="new-product" style={{color: "white"}}>Add Product</Button>) :
                         (<Button component={Link} to="new-offer" style={{color: "white"}}>Create Financing Offer</Button>)}
-                    <Button style={{color: "white", fontWeight: "bold"}} onClick={() => logout()}>Logout</Button>
+                    <Button style={{color: "white", fontWeight: "bold", marginLeft: "10px"}} onClick={() => logout()}>Logout</Button>
                 </Toolbar>
             </AppBar>
             </div>

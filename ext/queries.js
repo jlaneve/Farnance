@@ -72,3 +72,23 @@ export const getMarket = async (args, context) => {
         }
     })
 }
+
+
+export const getBankMarket = async (args, context) => {
+    return context.entities.Product.findMany({
+        where: {
+            agreementId: null
+        },
+        select: {
+            id: true,
+            type: true,
+            name: true,
+            quality: true,
+            quantity: true,
+
+            owner: {
+                select: { id: true, username: true }
+            }
+        }
+    })
+}
