@@ -16,7 +16,7 @@ const bankColumns = [
     { field: 'name', headerName: 'Name', width: 225 },
     { field: 'quality', headerName: 'Quality', width: 150 },
     { field: 'quantity', type: "number", headerName: 'Quantity', width: 150, valueFormatter: addCommas },
-    { field: 'owner', headerName: 'Farmer', width: 250, valueFormatter: ({ value }) => value.username },
+    { field: 'owner', headerName: 'Farmer', width: 250, renderCell: ({ value }) => (<a href={"mailto:" + value.email}>{value.username}</a>) },
 ]
 
 const ProductList = (props) => {

@@ -15,7 +15,7 @@ export const getProducts = async (args, context) => {
             quantity: true,
             agreementId: true,
             owner: {
-                select: { username: true }
+                select: { username: true, email: true }
             }
         }
     })
@@ -42,7 +42,7 @@ export const getAvailableFinancing = async (args, context) => {
                 where: {
                     productType: product.type,
                     quality: product.quality,
-                    remainingCapacity: { gt: product.quantity }
+                    remainingCapacity: { gte: product.quantity }
                 },
             })
     
@@ -87,7 +87,7 @@ export const getBankMarket = async (args, context) => {
             quantity: true,
 
             owner: {
-                select: { id: true, username: true }
+                select: { id: true, username: true, email: true }
             }
         }
     })

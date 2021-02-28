@@ -10,7 +10,7 @@ const bankColumns = [
     { field: 'id', headerName: 'Offer ID', width: 120 },
     { field: 'productType', headerName: 'Product Type', width: 180, valueFormatter: ({ value }) => products[value].name},
     { field: 'quality', headerName: 'Quality', width: 120 },
-    { field: 'totalCapacity', headerName: 'Original Capacity', type: "number", width: 175, valueFormatter: addCommas },
+    { field: 'dollarValue', headerName: 'Total Amount', type: "number", width: 175, valueFormatter: e => "$" + addCommas(e) },
     { field: 'remainingCapacity', headerName: 'Remaining Capacity', type: "number", width: 180, valueFormatter: addCommas },
     { field: 'rate', headerName: 'Rate (%)', type: "number", width: 120 },
 ]

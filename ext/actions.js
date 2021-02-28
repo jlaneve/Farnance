@@ -1,5 +1,42 @@
 import HttpError from "@wasp/core/HttpError.js"
 
+
+const products = {
+    "hard-red-winter-wheat": {
+        "name": "Hard Red Winter Wheat",
+        "price": 5
+    },
+    "durum-wheat": {
+        "name": "Durum Wheat",
+        "price": 4.5
+    },
+    "long-rice": {
+        "name": "Long Grain Rice",
+        "price": 5.5
+    },
+    "short-rice": {
+        "name": "Short Grain Rice",
+        "price": 4
+    },
+    "raw-sugar": {
+        "name": "Raw Sugar",
+        "price": 0.4
+    },
+    "refined-sugar": {
+        "name": "Refined Sugar",
+        "price": 0.2
+    },
+    "1-corn": {
+        "name": "#1 Yellow Corn",
+        "price": 3.85
+    },
+    "2-corn": {
+        "name": "#2 Yellow Corn",
+        "price": 3.75
+    }
+}
+
+
 export const createProduct = async (args, context) => {
     if (!context.user) { throw new HttpError(403) }
     
@@ -20,8 +57,9 @@ export const createOffer = async (args, context) => {
     
     return context.entities.FinancingAgreement.create({
         data: {
-            totalCapacity: args.amount,
-            remainingCapacity: args.amount,
+            totalCapacity: args.amount / products[args.productType].price,
+            remainingCapacity: args.amount / products[args.productType].price,
+            dollarValue: args.amount,
             rate: args.rate,
             productType: args.productType,
             quality: args.quality,
@@ -49,7 +87,7 @@ export const acceptFinancingOffer = async (args, context) => {
     let remainingCapacity = offer.remainingCapacity;
 
     products.forEach(async product => {
-        if (remainingCapacity > product.quantity) {
+        if (remainingCapacity >= product.quantity) {
             remainingCapacity = remainingCapacity - product.quantity
             // Remove capacity
             await context.entities.FinancingAgreement.update({
