@@ -1,3 +1,13 @@
 # Prisma Migrate lockfile v1
 
 20210227162352-added-users
+20210227164905-add-farmer-toggle-to-user-entity
+20210227181114-add-product-entity
+20210227193633-add-quantity-to-product-entity
+20210227195140-add-name-to-product-entity
+20210227234055-add-agreements
+20210227234223-remove-banks-in-favor-of-single-user-model
+20210228002010-add-potential-product-types
+20210228002742-add-potential-product-types
+20210228005213-make-financing-agreement-for-product-optional
+20210228013259-allow-for-partial-filling-of-offers

@@ -1,0 +1,19 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "FinancingAgreement",
+      "field": "potentialProducts",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "FinancingAgreement",
+      "field": "potentialQualities",
+      "type": "String",
+      "arity": "Required"
+    }
+  ]
+}

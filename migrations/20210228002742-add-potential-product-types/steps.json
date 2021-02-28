@@ -1,0 +1,29 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "FinancingAgreement",
+      "field": "productType",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "FinancingAgreement",
+      "field": "quality",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "FinancingAgreement",
+      "field": "potentialProducts"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "FinancingAgreement",
+      "field": "potentialQualities"
+    }
+  ]
+}
