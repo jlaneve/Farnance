@@ -35,8 +35,6 @@ export const acceptFinancingOffer = async (args, context) => {
     
     const { offerId } = args;
 
-    console.log(offerId)
-
     // Add relevant product to products list
     // Decrease remaining amount
 
@@ -47,8 +45,6 @@ export const acceptFinancingOffer = async (args, context) => {
     const products = await context.entities.Product.findMany({
         where: { ownerId: context.user.id, type: offer.productType, quality: offer.quality }
     })
-
-    console.log(products)
 
     let remainingCapacity = offer.remainingCapacity;
 

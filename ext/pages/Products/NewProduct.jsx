@@ -22,7 +22,7 @@ const NewProduct = () => {
     const handleSubmit = async event => {
         event.preventDefault()
         try {
-            await createProduct({ product: selectedProduct, name: products[selectedProduct].name, quality, quantity: parseInt(quantity) })
+            await createProduct({ product: selectedProduct, name: products[selectedProduct].name, quality, quantity: parseInt(quantity.replace(/\,/g,'')) })
             history.push("/home")
         } catch (err) {
             console.log(err)

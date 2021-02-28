@@ -15,8 +15,6 @@ const Market = (props) => {
     const { user } = props;
     const { data: market, isFetching, error } = useQuery(getMarket)
 
-    console.log(market)
-
     if (!user) return <Redirect to="/" />
 
     return (

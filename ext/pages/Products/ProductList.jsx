@@ -21,7 +21,6 @@ const bankColumns = [
 
 const ProductList = (props) => {
     const { products, farmer } = props;
-    console.log(products)
     return (
         <div style={{width: "100%"}}>
             <DataGrid rows={products} columns={farmer ? farmerColumns : bankColumns} autoHeight={true} />

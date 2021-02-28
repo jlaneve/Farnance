@@ -160,5 +160,6 @@ query getBankMarket {
 
 dependencies {=json
   "@material-ui/core": "^4.11.1",
-  "@material-ui/data-grid": "latest"
+  "@material-ui/data-grid": "latest",
+  "qs": "latest"
 json=}

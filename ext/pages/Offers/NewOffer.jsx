@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Container, TextField, InputAdornment, Typography, Select, MenuItem, InputLabel, FormControl, Button } from '@material-ui/core'
 import { useHistory } from 'react-router-dom';
+import qs from 'qs'
 
 import Header from '../Header/Header.jsx'
 
@@ -12,9 +13,11 @@ const productNames = Object.keys(products)
 const qualities = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-"];
 
 
-const NewOffer = () => {
-    const [selectedProduct, selectProduct] = useState(productNames[0])
-    const [quality, selectQuality] = useState(qualities[0])
+const NewOffer = (props) => {
+    const params = qs.parse(props.location.search, { ignoreQueryPrefix: true });
+    console.log(params)
+    const [selectedProduct, selectProduct] = useState(params["product"] ? params.product : productNames[0])
+    const [quality, selectQuality] = useState(params["quality"] ? params.quality : qualities[0])
     const [amount, setAmount] = useState(0)
     const [rate, setRate] = useState(0)
 
@@ -24,7 +27,7 @@ const NewOffer = () => {
         event.preventDefault()
         try {
             await createOffer({
-                amount: parseInt(amount),
+                amount: parseInt(amount.replace(/\,/g,'')),
                 rate: parseFloat(rate),
                 productType: selectedProduct,
                 quality: quality

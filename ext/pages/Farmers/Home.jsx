@@ -45,7 +45,7 @@ const FarmerHome = (props) => {
                 onSelectionChange={offerId => setOfferId(parseInt(offerId))} // returns offer id
                 />}
 
-            {offerId ? <Button onClick={() => acceptFinancingOffer({ offerId })}>Accept Offer</Button> : ""}
+            {offerId ? <Button variant="contained" color="primary" onClick={() => acceptFinancingOffer({ offerId })}>Accept Offer</Button> : ""}
 
             {isFetching && "Fetching..."}
             {error && "Error: " + error}

@@ -1,5 +1,8 @@
-import React from 'react';
-import { Card, CardContent, Typography, DataGrid } from '@material-ui/data-grid';
+import React, { useState } from 'react';
+import { DataGrid } from '@material-ui/data-grid';
+import { Button, Link } from "@material-ui/core"
+
+import { useHistory } from 'react-router-dom'
 
 import getBankMarket from '@wasp/queries/getBankMarket'
 import { useQuery } from '@wasp/queries'
@@ -16,8 +19,12 @@ const columns = [
 
 const BankMarket = (props) => {
     const { market } = props;
+    const history = useHistory()
 
     const { data: bankMarket, isFetching, error } = useQuery(getBankMarket)
+    const [selection, setSelection] = useState()
+
+    const selectedProduct = selection ? bankMarket.filter(product => product.id == selection)[0] : null;
 
     return (
         <div style={{width: "100%"}}>
@@ -25,7 +32,19 @@ const BankMarket = (props) => {
                 rows={bankMarket}
                 columns={columns}
                 autoHeight={true}
+                onSelectionModelChange={({ selectionModel }) => setSelection(selectionModel[0])}
             />}
+            <br />
+
+            {selectedProduct ?
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => history.push("/new-offer/?product=" + selectedProduct.type + "&quality=" + selectedProduct.quality)}
+                >
+                    Create offer for {selectedProduct.quality} {selectedProduct.name}
+                </Button>
+            : ""}
         </div>
     );
 }

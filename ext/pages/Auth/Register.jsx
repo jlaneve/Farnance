@@ -19,7 +19,6 @@ export default () => {
   // TODO: Turn into material-ui
 
   const handleSubmit = async (event) => {
-    console.log({ username, email, password, userType })
     event.preventDefault()
     setSubmitError(null)
     try {
