@@ -36,7 +36,7 @@ const Market = (props) => {
                 {user.farmer == false ? <div>
                     <br /><br />
                     <Typography variant="h6">
-                        As a bank, you also have access to all products that haven't been used as collateral!
+                        As a bank, you also have access to all products that haven't been used as collateral! Click on a product to make a financing offer.
                     </Typography>
                     <br /><br />
                     <BankMarket />
