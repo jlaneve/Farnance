@@ -2,7 +2,8 @@ app Farnance {
   title: "Farnance",
 
   head: [
-    "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap\" />"
+    "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap\" />",
+    "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" />"
   ]
 }
 
@@ -163,5 +164,6 @@ query getBankMarket {
 dependencies {=json
   "@material-ui/core": "^4.11.1",
   "@material-ui/data-grid": "latest",
-  "qs": "latest"
+  "qs": "latest",
+  "@material-ui/icons": "latest"
 json=}
