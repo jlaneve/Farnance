@@ -38,8 +38,8 @@ entity Product {=psl
     owner             User      @relation(fields: [ownerId], references: [id])
     ownerId           Int
 
-    financingAgreement FinancingAgreement @relation(fields: [agreementId], references: [id])
-    agreementId       Int
+    financingAgreement FinancingAgreement? @relation(fields: [agreementId], references: [id])
+    agreementId       Int?
 psl=}
 
 
@@ -48,7 +48,8 @@ entity FinancingAgreement {=psl
 
     filled            Boolean     @default(false)
 
-    amount            Float
+    totalCapacity     Int
+    remainingCapacity Int
     rate              Float
 
     // Before order is filled
@@ -74,12 +75,12 @@ page Landing {
 
 route "/register" -> page Register
 page Register {
-  component: import Register from "@ext/pages/Register/Register.jsx"
+  component: import Register from "@ext/pages/Auth/Register.jsx"
 }
 
 route "/login" -> page Login
 page Login {
-  component: import Login from "@ext/pages/Login/Login.jsx"
+  component: import Login from "@ext/pages/Auth/Login.jsx"
 }
 
 route "/home" -> page Home
@@ -92,7 +93,7 @@ page Home {
 route "/new-product" -> page NewProduct
 page NewProduct {
   authRequired: true,
-  component: import NewProduct from "@ext/pages/Farmers/NewProduct/NewProduct.jsx"
+  component: import NewProduct from "@ext/pages/Products/NewProduct.jsx"
 }
 
 
@@ -100,7 +101,7 @@ page NewProduct {
 route "/new-offer" -> page NewOffer
 page NewOffer {
   authRequired: true,
-  component: import NewOffer from "@ext/pages/Banks/NewOffer.jsx"
+  component: import NewOffer from "@ext/pages/Offers/NewOffer.jsx"
 }
 
 // Actions
@@ -115,12 +116,27 @@ action createOffer {
   entities: [FinancingAgreement]
 }
 
+action acceptFinancingOffer {
+  fn: import { acceptFinancingOffer } from "@ext/actions.js",
+  entities: [FinancingAgreement, Product]
+}
+
 
 // Queries
 
 query getProducts {
   fn: import { getProducts } from "@ext/queries.js",
   entities: [Product]
+}
+
+query getOffers {
+  fn: import { getOffers } from "@ext/queries.js",
+  entities: [FinancingAgreement]
+}
+
+query getAvailableFinancing {
+  fn: import { getAvailableFinancing } from "@ext/queries.js",
+  entities: [FinancingAgreement, Product]
 }
 
 

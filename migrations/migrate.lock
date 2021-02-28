@@ -9,3 +9,5 @@
 20210227234223-remove-banks-in-favor-of-single-user-model
 20210228002010-add-potential-product-types
 20210228002742-add-potential-product-types
+20210228005213-make-financing-agreement-for-product-optional
+20210228013259-allow-for-partial-filling-of-offers

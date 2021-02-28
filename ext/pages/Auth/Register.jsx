@@ -40,7 +40,7 @@ export default () => {
         ) }
 
         <form onSubmit={handleSubmit}>
-          <h2> Username </h2>
+          <h2> Full Name </h2>
           <input type='text' value={username} onChange={e => setUsername(e.target.value)} />
 
           <h2> Email </h2>
